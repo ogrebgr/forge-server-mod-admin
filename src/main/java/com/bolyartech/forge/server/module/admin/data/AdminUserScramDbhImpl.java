@@ -1,7 +1,7 @@
 package com.bolyartech.forge.server.module.admin.data;
 
-import com.bolyartech.forge.server.module.user.data.scram.Scram;
-import com.bolyartech.forge.server.module.user.data.scram.ScramDbh;
+import com.bolyartech.forge.server.module.user_scram.data.scram.Scram;
+import com.bolyartech.forge.server.module.user_scram.data.scram.ScramDbh;
 import com.bolyartech.scram_sasl.common.ScramUtils;
 
 import java.sql.Connection;

@@ -1,6 +1,7 @@
 package com.bolyartech.forge.server.module.admin.data;
 
-import com.bolyartech.forge.server.module.user.data.scram.ScramDbhImpl;
+
+import com.bolyartech.forge.server.module.user_scram.data.scram.ScramDbhImpl;
 
 
 public class AdminScramDbhImpl extends ScramDbhImpl {

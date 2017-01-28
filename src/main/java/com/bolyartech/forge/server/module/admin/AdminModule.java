@@ -7,8 +7,8 @@ import com.bolyartech.forge.server.module.admin.data.AdminUserExportedViewDbh;
 import com.bolyartech.forge.server.module.admin.data.AdminUserScramDbh;
 import com.bolyartech.forge.server.module.admin.data.UserExportedViewDbh;
 import com.bolyartech.forge.server.module.admin.endpoints.*;
-import com.bolyartech.forge.server.module.user.data.scram.ScramDbh;
 import com.bolyartech.forge.server.module.user.data.user.UserDbh;
+import com.bolyartech.forge.server.module.user_scram.data.scram.ScramDbh;
 import com.bolyartech.forge.server.route.PostRoute;
 import com.bolyartech.forge.server.route.Route;
 
