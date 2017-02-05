@@ -1,8 +1,8 @@
 package com.bolyartech.forge.server.module.admin;
 
 import com.bolyartech.forge.server.handler.ForgeSecureEndpoint;
-import com.bolyartech.forge.server.module.user.UserResponseCodes;
 import com.bolyartech.forge.server.module.admin.data.AdminUser;
+import com.bolyartech.forge.server.module.user.UserResponseCodes;
 import com.bolyartech.forge.server.response.ResponseException;
 import com.bolyartech.forge.server.response.forge.ForgeResponse;
 import com.bolyartech.forge.server.route.RequestContext;

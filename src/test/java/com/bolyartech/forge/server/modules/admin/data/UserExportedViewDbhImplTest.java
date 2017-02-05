@@ -35,8 +35,8 @@ public class UserExportedViewDbhImplTest {
         if (mDbPool == null) {
             ClassLoader classLoader = getClass().getClassLoader();
             File file = new File(classLoader.getResource("conf/db.conf").getFile());
+            DbConfigurationLoader loader = new FileDbConfigurationLoader(file.getAbsolutePath());
 
-            DbConfigurationLoader loader = new FileDbConfigurationLoader();
             DbConfiguration dbConf = loader.load();
 
             mDbPool = DbUtils.createC3P0DbPool(dbConf);

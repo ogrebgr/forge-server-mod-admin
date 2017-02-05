@@ -2,12 +2,10 @@ package com.bolyartech.forge.server.module.admin;
 
 import com.bolyartech.forge.server.db.DbPool;
 import com.bolyartech.forge.server.module.HttpModule;
-import com.bolyartech.forge.server.module.admin.data.AdminUserDbh;
-import com.bolyartech.forge.server.module.admin.data.AdminUserExportedViewDbh;
-import com.bolyartech.forge.server.module.admin.data.AdminUserScramDbh;
-import com.bolyartech.forge.server.module.admin.data.UserExportedViewDbh;
+import com.bolyartech.forge.server.module.admin.data.*;
 import com.bolyartech.forge.server.module.admin.endpoints.*;
 import com.bolyartech.forge.server.module.user.data.user.UserDbh;
+import com.bolyartech.forge.server.module.user.data.user.UserDbhImpl;
 import com.bolyartech.forge.server.module.user_scram.data.scram.ScramDbh;
 import com.bolyartech.forge.server.route.PostRoute;
 import com.bolyartech.forge.server.route.Route;
@@ -76,6 +74,18 @@ public class AdminModule implements HttpModule {
         mAdminUserScramDbh = adminUserScramDbh;
         mUserExportedViewDbh = userExportedViewDbh;
         mAdminUserExportedViewDbh = adminUserExportedViewDbh;
+    }
+
+
+    public static AdminModule createDefault(DbPool dbPool) {
+        return new AdminModule(dbPool,
+                new AdminUserDbhImpl(),
+                new AdminScramDbhImpl(),
+                new AdminScramDbhImpl(),
+                new UserDbhImpl(),
+                new AdminUserScramDbhImpl(),
+                new UserExportedViewDbhImpl(),
+                new AdminUserExportedViewDbhImpl());
     }
 
 
