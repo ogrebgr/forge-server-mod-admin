@@ -29,8 +29,8 @@ public class AdminScramDbhImplTest {
     public void setup() throws SQLException, ForgeConfigurationException {
         if (mDbPool == null) {
             ClassLoader classLoader = getClass().getClassLoader();
-            File file = new File(classLoader.getResource("conf/db.conf").getFile());
-            DbConfigurationLoader loader = new FileDbConfigurationLoader(file.getAbsolutePath());
+            File file = new File(classLoader.getResource("db.conf").getFile());
+            DbConfigurationLoader loader = new FileDbConfigurationLoader(file.getParent());
 
             DbConfiguration dbConf = loader.load();
 
