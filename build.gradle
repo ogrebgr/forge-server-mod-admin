@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.bolyartech.forge:forge-server:5.1.0'
+    compile 'com.bolyartech.forge:forge-server:5.2.2'
 //    compile project(':forge-server')
     compile project(':forge-server-mod-user')
     compile project(':forge-server-mod-user-scram')
