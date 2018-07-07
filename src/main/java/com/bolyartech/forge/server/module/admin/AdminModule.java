@@ -21,15 +21,15 @@ public class AdminModule implements HttpModule {
     private static final int MODULE_VERSION_CODE = 1;
     private static final String MODULE_VERSION_NAME = "1.0.0";
 
-    private final String mPathPrefix;
-    private final DbPool mDbPool;
-    private final AdminUserDbh mAdminUserDbh;
-    private final ScramDbh mUserScramDbh;
-    private final ScramDbh mAdminScramDbh;
-    private final UserDbh mUserDbh;
-    private final AdminUserScramDbh mAdminUserScramDbh;
-    private final UserExportedViewDbh mUserExportedViewDbh;
-    private final AdminUserExportedViewDbh mAdminUserExportedViewDbh;
+    private final String pathPrefix;
+    private final DbPool dbPool;
+    private final AdminUserDbh adminUserDbh;
+    private final ScramDbh userScramDbh;
+    private final ScramDbh adminScramDbh;
+    private final UserDbh userDbh;
+    private final AdminUserScramDbh adminUserScramDbh;
+    private final UserExportedViewDbh userExportedViewDbh;
+    private final AdminUserExportedViewDbh adminUserExportedViewDbh;
 
 
     public AdminModule(String pathPrefix,
@@ -42,15 +42,15 @@ public class AdminModule implements HttpModule {
                        UserExportedViewDbh userExportedViewDbh,
                        AdminUserExportedViewDbh adminUserExportedViewDbh) {
 
-        mPathPrefix = pathPrefix;
-        mDbPool = dbPool;
-        mAdminUserDbh = adminUserDbh;
-        mUserScramDbh = userScramDbh;
-        mAdminScramDbh = adminScramDbh;
-        mUserDbh = userDbh;
-        mAdminUserScramDbh = adminUserScramDbh;
-        mUserExportedViewDbh = userExportedViewDbh;
-        mAdminUserExportedViewDbh = adminUserExportedViewDbh;
+        this.pathPrefix = pathPrefix;
+        this.dbPool = dbPool;
+        this.adminUserDbh = adminUserDbh;
+        this.userScramDbh = userScramDbh;
+        this.adminScramDbh = adminScramDbh;
+        this.userDbh = userDbh;
+        this.adminUserScramDbh = adminUserScramDbh;
+        this.userExportedViewDbh = userExportedViewDbh;
+        this.adminUserExportedViewDbh = adminUserExportedViewDbh;
 
     }
 
@@ -65,15 +65,15 @@ public class AdminModule implements HttpModule {
             UserExportedViewDbh userExportedViewDbh,
             AdminUserExportedViewDbh adminUserExportedViewDbh) {
 
-        mPathPrefix = DEFAULT_PATH_PREFIX;
-        mDbPool = dbPool;
-        mAdminUserDbh = adminUserDbh;
-        mUserScramDbh = userScramDbh;
-        mAdminScramDbh = adminScramDbh;
-        mUserDbh = userDbh;
-        mAdminUserScramDbh = adminUserScramDbh;
-        mUserExportedViewDbh = userExportedViewDbh;
-        mAdminUserExportedViewDbh = adminUserExportedViewDbh;
+        pathPrefix = DEFAULT_PATH_PREFIX;
+        this.dbPool = dbPool;
+        this.adminUserDbh = adminUserDbh;
+        this.userScramDbh = userScramDbh;
+        this.adminScramDbh = adminScramDbh;
+        this.userDbh = userDbh;
+        this.adminUserScramDbh = adminUserScramDbh;
+        this.userExportedViewDbh = userExportedViewDbh;
+        this.adminUserExportedViewDbh = adminUserExportedViewDbh;
     }
 
 
@@ -93,28 +93,28 @@ public class AdminModule implements HttpModule {
     public List<Route> createRoutes() {
         List<Route> ret = new ArrayList<>();
 
-        ret.add(new PostRoute(mPathPrefix + "login",
-                new LoginEp(mDbPool, mAdminUserDbh, mAdminScramDbh)));
-        ret.add(new PostRoute(mPathPrefix + "logout",
+        ret.add(new PostRoute(pathPrefix + "login",
+                new LoginEp(dbPool, adminUserDbh, adminScramDbh)));
+        ret.add(new PostRoute(pathPrefix + "logout",
                 new LogoutEp()));
-        ret.add(new PostRoute(mPathPrefix + "users",
-                new UserListEp(mDbPool, mUserExportedViewDbh)));
-        ret.add(new PostRoute(mPathPrefix + "user_find",
-                new FindUserEp(mDbPool, mUserExportedViewDbh)));
-        ret.add(new PostRoute(mPathPrefix + "user_disable",
-                new DisableUserEp(mDbPool, mUserDbh)));
-        ret.add(new PostRoute(mPathPrefix + "user_chpwd",
-                new ChangePasswordEp(mDbPool, mUserScramDbh)));
-        ret.add(new PostRoute(mPathPrefix + "admin_users",
-                new AdminUserListEp(mDbPool, mAdminUserExportedViewDbh)));
-        ret.add(new PostRoute(mPathPrefix + "admin_user_chpwd",
-                new ChangeAdminPasswordEp(mDbPool, mAdminScramDbh)));
-        ret.add(new PostRoute(mPathPrefix + "chpwd_own",
-                new ChangeAdminPasswordEp(mDbPool, mAdminScramDbh)));
-        ret.add(new PostRoute(mPathPrefix + "admin_user_create",
-                new CreateAdminUserEp(mDbPool, mAdminUserDbh, mAdminScramDbh, mAdminUserScramDbh)));
-        ret.add(new PostRoute(mPathPrefix + "admin_user_disable",
-                new DisableAdminUserEp(mDbPool, mAdminUserDbh)));
+        ret.add(new PostRoute(pathPrefix + "users",
+                new UserListEp(dbPool, userExportedViewDbh)));
+        ret.add(new PostRoute(pathPrefix + "user_find",
+                new FindUserEp(dbPool, userExportedViewDbh)));
+        ret.add(new PostRoute(pathPrefix + "user_disable",
+                new DisableUserEp(dbPool, userDbh)));
+        ret.add(new PostRoute(pathPrefix + "user_chpwd",
+                new ChangePasswordEp(dbPool, userScramDbh)));
+        ret.add(new PostRoute(pathPrefix + "admin_users",
+                new AdminUserListEp(dbPool, adminUserExportedViewDbh)));
+        ret.add(new PostRoute(pathPrefix + "admin_user_chpwd",
+                new ChangeAdminPasswordEp(dbPool, adminScramDbh)));
+        ret.add(new PostRoute(pathPrefix + "chpwd_own",
+                new ChangeAdminPasswordEp(dbPool, adminScramDbh)));
+        ret.add(new PostRoute(pathPrefix + "admin_user_create",
+                new CreateAdminUserEp(dbPool, adminUserDbh, adminScramDbh, adminUserScramDbh)));
+        ret.add(new PostRoute(pathPrefix + "admin_user_disable",
+                new DisableAdminUserEp(dbPool, adminUserDbh)));
 
         return ret;
     }

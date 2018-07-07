@@ -21,12 +21,12 @@ public class DisableUserEp extends AdminDbEndpoint {
     static final String PARAM_USER = "user";
     static final String PARAM_DISABLE = "disable";
 
-    private final UserDbh mUserDbh;
+    private final UserDbh userDbh;
 
 
     public DisableUserEp(DbPool dbPool, UserDbh userDbh) {
         super(dbPool);
-        mUserDbh = userDbh;
+        this.userDbh = userDbh;
     }
 
 
@@ -43,7 +43,7 @@ public class DisableUserEp extends AdminDbEndpoint {
 
                 long userId = Long.parseLong(userIdRaw);
 
-                if (mUserDbh.changeDisabled(dbc, userId, disable)) {
+                if (userDbh.changeDisabled(dbc, userId, disable)) {
                     return new ForgeResponse(BasicResponseCodes.Oks.OK,
                             "{disabled: " + (disable ? "true" : "false") + "}");
                 } else {

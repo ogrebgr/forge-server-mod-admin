@@ -21,15 +21,15 @@ import java.util.List;
 public class UserListEp extends AdminDbEndpoint {
     private static final int USERS_PAGE_SIZE = 10;
 
-    private final UserExportedViewDbh mUserExportedViewDbh;
+    private final UserExportedViewDbh userExportedViewDbh;
 
-    private final Gson mGson;
+    private final Gson gson;
 
 
     public UserListEp(DbPool dbPool, UserExportedViewDbh userExportedViewDbh) {
         super(dbPool);
-        mUserExportedViewDbh = userExportedViewDbh;
-        mGson = new Gson();
+        this.userExportedViewDbh = userExportedViewDbh;
+        gson = new Gson();
     }
 
 
@@ -50,9 +50,9 @@ public class UserListEp extends AdminDbEndpoint {
 
             }
 
-            List<UserExportedView> users = mUserExportedViewDbh.list(dbc, id, USERS_PAGE_SIZE);
+            List<UserExportedView> users = userExportedViewDbh.list(dbc, id, USERS_PAGE_SIZE);
 
-            return new ForgeResponse(BasicResponseCodes.Oks.OK, mGson.toJson(users));
+            return new ForgeResponse(BasicResponseCodes.Oks.OK, gson.toJson(users));
         } else {
             return MissingParametersResponse.getInstance();
         }

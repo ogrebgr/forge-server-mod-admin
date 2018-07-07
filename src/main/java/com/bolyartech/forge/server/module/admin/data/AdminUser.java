@@ -6,17 +6,17 @@ import java.util.Objects;
 public final class AdminUser {
     private static final int MIN_PASSWORD_LENGTH = 7;
 
-    private final long mId;
-    private final boolean mIsDisabled;
-    private final boolean mIsSuperAdmin;
-    private final String mName;
+    private final long id;
+    private final boolean isDisabled;
+    private final boolean isSuperAdmin;
+    private final String name;
 
 
     public AdminUser(long id, boolean isDisabled, boolean isSuperAdmin, String name) {
-        mId = id;
-        mIsDisabled = isDisabled;
-        mIsSuperAdmin = isSuperAdmin;
-        mName = name;
+        this.id = id;
+        this.isDisabled = isDisabled;
+        this.isSuperAdmin = isSuperAdmin;
+        this.name = name;
     }
 
 
@@ -35,22 +35,22 @@ public final class AdminUser {
 
 
     public long getId() {
-        return mId;
+        return id;
     }
 
 
     public boolean isDisabled() {
-        return mIsDisabled;
+        return isDisabled;
     }
 
 
     public boolean isSuperAdmin() {
-        return mIsSuperAdmin;
+        return isSuperAdmin;
     }
 
 
     public String getName() {
-        return mName;
+        return name;
     }
 
 
@@ -58,8 +58,8 @@ public final class AdminUser {
     public boolean equals(Object obj) {
         if (obj != null && obj instanceof AdminUser) {
             AdminUser other = (AdminUser) obj;
-            return other.getId() == mId && other.isDisabled() == mIsDisabled &&
-                    other.isSuperAdmin() == mIsSuperAdmin && other.getName().equals(mName);
+            return other.getId() == id && other.isDisabled() == isDisabled &&
+                    other.isSuperAdmin() == isSuperAdmin && other.getName().equals(name);
         } else {
             return false;
         }
@@ -68,6 +68,6 @@ public final class AdminUser {
 
     @Override
     public int hashCode() {
-        return Objects.hash(mId, mIsDisabled, mIsSuperAdmin, mName);
+        return Objects.hash(id, isDisabled, isSuperAdmin, name);
     }
 }

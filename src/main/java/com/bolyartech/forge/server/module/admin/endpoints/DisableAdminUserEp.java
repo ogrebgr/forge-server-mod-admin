@@ -24,12 +24,12 @@ public class DisableAdminUserEp extends AdminDbEndpoint {
     static final int ERROR_CANNOT_DISABLE_YOURSELF = -101;
 
 
-    private final AdminUserDbh mAdminUserDbh;
+    private final AdminUserDbh adminUserDbh;
 
 
     public DisableAdminUserEp(DbPool dbPool, AdminUserDbh adminUserDbh) {
         super(dbPool);
-        mAdminUserDbh = adminUserDbh;
+        this.adminUserDbh = adminUserDbh;
     }
 
 
@@ -50,7 +50,7 @@ public class DisableAdminUserEp extends AdminDbEndpoint {
                         return new ForgeResponse(ERROR_CANNOT_DISABLE_YOURSELF, "ERROR_CANNOT_DISABLE_YOURSELF");
                     }
 
-                    if (mAdminUserDbh.changeDisabled(dbc, userId, disable)) {
+                    if (adminUserDbh.changeDisabled(dbc, userId, disable)) {
                         return new ForgeResponse(BasicResponseCodes.Oks.OK,
                                 "{disabled: " + (disable ? "true" : "false") + "}");
                     } else {

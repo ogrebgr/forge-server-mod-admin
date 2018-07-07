@@ -33,17 +33,17 @@ public class LoginEp extends ForgeDbEndpoint {
     static final String PARAM_STEP = "step";
     static final String PARAM_DATA = "data";
 
-    private final AdminUserDbh mAdminUserDbh;
-    private final ScramDbh mScramDbh;
+    private final AdminUserDbh adminUserDbh;
+    private final ScramDbh scramDbh;
 
-    private final Gson mGson;
+    private final Gson gson;
 
 
     public LoginEp(DbPool dbPool, AdminUserDbh adminUserDbh, ScramDbh scramDbh) {
         super(dbPool);
-        mAdminUserDbh = adminUserDbh;
-        mScramDbh = scramDbh;
-        mGson = new Gson();
+        this.adminUserDbh = adminUserDbh;
+        this.scramDbh = scramDbh;
+        gson = new Gson();
     }
 
 
@@ -83,11 +83,11 @@ public class LoginEp extends ForgeDbEndpoint {
                     if (finalMsg != null) {
                         Scram scramData = session.getVar(SessionVars.VAR_SCRAM_DATA);
 
-                        AdminUser user = mAdminUserDbh.loadById(dbc, scramData.getUser());
+                        AdminUser user = adminUserDbh.loadById(dbc, scramData.getUser());
                         SessionInfoAdmin si = new SessionInfoAdmin(user.getId(), user.isSuperAdmin());
 
                         session.setVar(SessionVars.VAR_USER, user);
-                        return new OkResponse(mGson.toJson(new RokLogin(session.getMaxInactiveInterval(),
+                        return new OkResponse(gson.toJson(new RokLogin(session.getMaxInactiveInterval(),
                                 si,
                                 finalMsg)));
                     } else {
@@ -116,7 +116,7 @@ public class LoginEp extends ForgeDbEndpoint {
 
         if (username != null) {
             try {
-                Scram scramData = mScramDbh.loadByUsername(dbc, username);
+                Scram scramData = scramDbh.loadByUsername(dbc, username);
                 if (scramData != null) {
                     session.setVar(SessionVars.VAR_SCRAM_DATA, scramData);
                     UserData ud = new UserData(scramData.getSalt(), scramData.getIterations(),

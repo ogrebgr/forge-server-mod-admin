@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 public final class UserExportedView {
     @SerializedName("id")
-    public final long mId;
+    public final long id;
     @SerializedName("username")
-    private final String mUsername;
+    private final String username;
     @SerializedName("screen_name")
-    private final String mScreenName;
+    private final String screenName;
     @SerializedName("disabled")
-    private final boolean mIsDisabled;
+    private final boolean isDisabled;
 
 
     public UserExportedView(long id, String username, String screenName, boolean isDisabled) {
-        mId = id;
-        mUsername = username;
-        mScreenName = screenName;
-        mIsDisabled = isDisabled;
+        this.id = id;
+        this.username = username;
+        this.screenName = screenName;
+        this.isDisabled = isDisabled;
     }
 }

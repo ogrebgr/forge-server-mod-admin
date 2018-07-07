@@ -31,17 +31,17 @@ public class CreateAdminUserEp extends AdminDbEndpoint {
     static final String PARAM_SUPER_ADMIN = "super_admin";
 
 
-    private final AdminUserDbh mAdminUserDbh;
-    private final ScramDbh mAdminScramDbh;
-    private final AdminUserScramDbh mAdminUserScramDbh;
+    private final AdminUserDbh adminUserDbh;
+    private final ScramDbh adminScramDbh;
+    private final AdminUserScramDbh adminUserScramDbh;
 
 
     public CreateAdminUserEp(DbPool dbPool, AdminUserDbh adminUserDbh, ScramDbh adminScramDbh,
                              AdminUserScramDbh adminUserScramDbh) {
         super(dbPool);
-        mAdminUserDbh = adminUserDbh;
-        mAdminScramDbh = adminScramDbh;
-        mAdminUserScramDbh = adminUserScramDbh;
+        this.adminUserDbh = adminUserDbh;
+        this.adminScramDbh = adminScramDbh;
+        this.adminUserScramDbh = adminUserScramDbh;
     }
 
 
@@ -74,7 +74,7 @@ public class CreateAdminUserEp extends AdminDbEndpoint {
 
                 ScramUtils.NewPasswordStringData data = UserScramUtils.createPasswordData(password);
 
-                AdminUserScram scram = mAdminUserScramDbh.createNew(dbc, mAdminUserDbh, mAdminScramDbh,
+                AdminUserScram scram = adminUserScramDbh.createNew(dbc, adminUserDbh, adminScramDbh,
                         superAdmin, name, username, data);
 
                 if (scram != null) {

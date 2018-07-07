@@ -21,15 +21,15 @@ import java.util.List;
 public class FindUserEp extends AdminDbEndpoint {
     static final String PARAM_PATTERN = "pattern";
 
-    private final Gson mGson;
+    private final Gson gson;
 
-    private final UserExportedViewDbh mUserExportedViewDbh;
+    private final UserExportedViewDbh userExportedViewDbh;
 
 
     public FindUserEp(DbPool dbPool, UserExportedViewDbh userExportedViewDbh) {
         super(dbPool);
-        mUserExportedViewDbh = userExportedViewDbh;
-        mGson = new Gson();
+        this.userExportedViewDbh = userExportedViewDbh;
+        gson = new Gson();
     }
 
 
@@ -40,8 +40,8 @@ public class FindUserEp extends AdminDbEndpoint {
         String pattern = ctx.getFromPost(PARAM_PATTERN);
 
         if (!Strings.isNullOrEmpty(pattern)) {
-            List<UserExportedView> rez = mUserExportedViewDbh.findByPattern(dbc, pattern);
-            return new ForgeResponse(BasicResponseCodes.Oks.OK, mGson.toJson(rez));
+            List<UserExportedView> rez = userExportedViewDbh.findByPattern(dbc, pattern);
+            return new ForgeResponse(BasicResponseCodes.Oks.OK, gson.toJson(rez));
         } else {
             return MissingParametersResponse.getInstance();
         }

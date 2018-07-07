@@ -5,47 +5,47 @@ import com.google.gson.annotations.SerializedName;
 
 public class AdminUserExportedView {
     @SerializedName("id")
-    private final long mId;
+    private final long id;
     @SerializedName("username")
-    private final String mUsername;
+    private final String username;
     @SerializedName("is_disabled")
-    private final boolean mIsDisabled;
+    private final boolean isDisabled;
     @SerializedName("is_super_admin")
-    private final boolean mIsSuperAdmin;
+    private final boolean isSuperAdmin;
     @SerializedName("name")
-    private final String mName;
+    private final String name;
 
 
     public AdminUserExportedView(long id, String username, boolean isDisabled, boolean isSuperAdmin, String name) {
-        mId = id;
-        mUsername = username;
-        mIsDisabled = isDisabled;
-        mIsSuperAdmin = isSuperAdmin;
-        mName = name;
+        this.id = id;
+        this.username = username;
+        this.isDisabled = isDisabled;
+        this.isSuperAdmin = isSuperAdmin;
+        this.name = name;
     }
 
 
     public long getId() {
-        return mId;
+        return id;
     }
 
 
     public String getUsername() {
-        return mUsername;
+        return username;
     }
 
 
     public boolean isDisabled() {
-        return mIsDisabled;
+        return isDisabled;
     }
 
 
     public boolean isSuperAdmin() {
-        return mIsSuperAdmin;
+        return isSuperAdmin;
     }
 
 
     public String getName() {
-        return mName;
+        return name;
     }
 }

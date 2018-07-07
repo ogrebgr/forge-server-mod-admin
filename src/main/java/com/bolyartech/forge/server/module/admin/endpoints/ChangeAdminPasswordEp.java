@@ -25,12 +25,12 @@ public class ChangeAdminPasswordEp extends AdminDbEndpoint {
     static final String PARAM_USER = "user";
     static final String PARAM_PASSWORD = "new_password";
 
-    private final ScramDbh mAdminScramDbh;
+    private final ScramDbh adminScramDbh;
 
 
     public ChangeAdminPasswordEp(DbPool dbPool, ScramDbh adminScramDbh) {
         super(dbPool);
-        mAdminScramDbh = adminScramDbh;
+        this.adminScramDbh = adminScramDbh;
     }
 
 
@@ -52,7 +52,7 @@ public class ChangeAdminPasswordEp extends AdminDbEndpoint {
                     long userId = Long.parseLong(userIdRaw);
                     ScramUtils.NewPasswordStringData data = UserScramUtils.createPasswordData(newPassword);
 
-                    if (mAdminScramDbh.changePassword(dbc, user.getId(), data)) {
+                    if (adminScramDbh.changePassword(dbc, user.getId(), data)) {
                         return OkResponse.getInstance();
                     } else {
                         return new ForgeResponse(ERROR_USER_NOT_FOUND);

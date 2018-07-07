@@ -25,12 +25,12 @@ public class ChangePasswordEp extends AdminDbEndpoint {
     static final String PARAM_USER = "user";
     static final String PARAM_PASSWORD = "new_password";
 
-    private final ScramDbh mScramDbh;
+    private final ScramDbh scramDbh;
 
 
     public ChangePasswordEp(DbPool dbPool, ScramDbh scramDbh) {
         super(dbPool);
-        mScramDbh = scramDbh;
+        this.scramDbh = scramDbh;
     }
 
 
@@ -51,7 +51,7 @@ public class ChangePasswordEp extends AdminDbEndpoint {
 
                 ScramUtils.NewPasswordStringData data = UserScramUtils.createPasswordData(newPassword);
 
-                if (mScramDbh.changePassword(dbc, userId, data)) {
+                if (scramDbh.changePassword(dbc, userId, data)) {
 
                     return OkResponse.getInstance();
                 } else {
